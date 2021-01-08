@@ -25,6 +25,24 @@ const updateUI = (data) => {
         <span>&deg;C</span>
     </div>
   `
+//updatingg the night/day & icon images
+const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
+icon.setAttribute('src', iconSrc);
+
+//----we are going to use Ternarry operation instad
+/// the srtucture is like this const result = condition? "value 1" : "value 2";
+
+// let timeSrc = null;
+// if(weather.IsDayTime){
+//   timeSrc = 'img/day.svg';
+//   } else{
+//     timeSrc = 'img/night.svg';
+//   }
+
+let timeSrc = weather.IsDayTime ? 'img/day.svg':'img/night.svg' ;
+
+  time.setAttribute('src', timeSrc);
+
   //we added bootstarp to not show hard coded html by addin a class of d-none on line 21
   //so we can first chek it and then showing the data to user
   if(card.classList.contains('d-none')){
