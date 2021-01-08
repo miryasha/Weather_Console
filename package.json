@@ -1,0 +1,22 @@
+{
+  "name": "weather_console",
+  "version": "1.0.0",
+  "description": "weather forecast console",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasha6081/Weather_Console.git"
+  },
+  "author": "yasha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yasha6081/Weather_Console/issues"
+  },
+  "homepage": "https://github.com/yasha6081/Weather_Console#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
