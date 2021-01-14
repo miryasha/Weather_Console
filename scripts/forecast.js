@@ -1,6 +1,6 @@
 require('dotenv').config({path:'../.env'});
 
-const key = process.env.ACCUWEATHER_KEY;
+let key =  process.env.ACCUWEATHER_KEY;
 
 //get wather information
 const getWeather = async (id) =>{
