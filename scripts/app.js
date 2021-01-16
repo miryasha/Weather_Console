@@ -3,16 +3,11 @@ const card = document.querySelector('.card');
 const details = document.querySelector('.details');
 const time =  document.querySelector('img.time');
 const icon =   document.querySelector('.icon img');
+const forecast = new Forecast();
 
-//we gonna make func to get the update city data and show it on UI
-//output all data on DOM
+
 const updateUI = (data) => {
  
-  //destructuring data we could do this 
-  // const cityDets = data.cityDets;
-  // const weather = data.weather;
-
-  //destructure properties from an objects
 
   const{ cityDets, weather} = data;
 
@@ -29,39 +24,18 @@ const updateUI = (data) => {
 const iconSrc = `img/icons/${weather.WeatherIcon}.svg`;
 icon.setAttribute('src', iconSrc);
 
-//----we are going to use Ternarry operation instad
-/// the srtucture is like this const result = condition? "value 1" : "value 2";
-
-// let timeSrc = null;
-// if(weather.IsDayTime){
-//   timeSrc = 'img/day.svg';
-//   } else{
-//     timeSrc = 'img/night.svg';
-//   }
 
 let timeSrc = weather.IsDayTime ? 'img/day.svg':'img/night.svg' ;
 
   time.setAttribute('src', timeSrc);
 
-  //we added bootstarp to not show hard coded html by addin a class of d-none on line 21
-  //so we can first chek it and then showing the data to user
   if(card.classList.contains('d-none')){
     card.classList.remove('d-none')
   };
 
 };
 
-const updateCity = async (city) =>{
-  //console.log(city);
-  const cityDets = await getCity(city);
-  const weather = await getWeather(cityDets.Key);
 
-   return {
-     //when the value and property are same we can delete one of them the name is object shorthand notation
-  //   cityDets: cityDets,weather: weather
-  cityDets, weather};
-
-};
 
 cityForm.addEventListener('submit', e => {
     //prevent default action
@@ -72,7 +46,7 @@ cityForm.addEventListener('submit', e => {
     cityForm.reset();
 
     //update the ui with new city
-    updateCity(city)
+    forecast.updateCity(city)
     .then(data => updateUI(data))
     .catch(err => console.log(err))
     //set local storage
@@ -80,7 +54,7 @@ cityForm.addEventListener('submit', e => {
 });
 
 if(localStorage.getItem('city')){
-  updateCity(localStorage.getItem('city'))
+  forecast.updateCity(localStorage.getItem('city'))
   .then(data => updateUI(data))
   .catch(err => console.log(err));
 }
